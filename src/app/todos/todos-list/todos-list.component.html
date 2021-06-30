@@ -1,0 +1,38 @@
+<h5>Todos List</h5>
+<div *ngIf="isReady">
+  <a class="btn-success btn" [routerLink]="'add'">Add Todo</a>
+  <hr />
+  <table class="table table-hover" *ngIf="todos.length !== 0">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>ID</th>
+        <th>Task</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.task }}</td>
+        <td class="text-center">
+          <a class="btn btn-primary btn-sm" [routerLink]="['edit', todo.id]">
+            Edit
+          </a>
+          <a
+            class="btn btn-primary btn-sm m-1"
+            [routerLink]="['details', todo.id]"
+          >
+            Detail
+          </a>
+          <a class="btn btn-danger btn-sm" (click)="onDeleteTodo(todo.id)">
+            Delete
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <span *ngIf="todos.length === 0"> No todo present currently! </span>
+</div>
+<app-loader *ngIf="!isReady"></app-loader>

@@ -1,0 +1,24 @@
+<div *ngIf="isReady">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Todo # {{ todo.id }}: {{ todo.task }}</h5>
+      <p class="card-text">
+        {{ todo.detail }}
+      </p>
+      <p class="card-text">
+        <small class="text-muted">Due Date: {{ todo.date }}</small>
+      </p>
+    </div>
+  </div>
+
+  <a
+    type="button"
+    class="btn btn-primary btn-sm m-1"
+    [routerLink]="['../../edit', todo.id]"
+    >Edit</a
+  >
+  <button type="button" class="btn btn-danger btn-sm" (click)="onDeleteTodo()">
+    Delete
+  </button>
+</div>
+<app-loader *ngIf="!isReady"></app-loader>
