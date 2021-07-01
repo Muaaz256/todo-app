@@ -1,1 +1,31 @@
-<p>Todo Add/Edit</p>
+<h5>{{ isEdit ? "Edit" : "Add" }} Title</h5>
+<div *ngIf="isReady">
+  <span *ngIf="errorMessage" class="text-danger"> {{ errorMessage }}</span>
+  <div class="mb-3">
+    <label for="task" class="form-label">Todo Task</label>
+    <input type="text" class="form-control" id="task" [(ngModel)]="todoTask" />
+  </div>
+  <div class="mb-3">
+    <label for="details" class="form-label">Todo Details</label>
+    <textarea
+      class="form-control"
+      id="details"
+      rows="3"
+      [(ngModel)]="todoDetails"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="dueDate" class="form-label">Todo Due Date</label>
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="dueDate"
+      rows="3"
+      [(ngModel)]="dueDate"
+    />
+  </div>
+
+  <button class="btn btn-success m-1" (click)="onSave()">Save</button>
+  <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+</div>
+<app-loader *ngIf="!isReady"></app-loader>

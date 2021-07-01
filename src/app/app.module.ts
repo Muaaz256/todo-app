@@ -12,6 +12,7 @@ import { TodosDetailsComponent } from './todos/todos-details/todos-details.compo
 import { TodosListComponent } from './todos/todos-list/todos-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LoaderComponent } from './loader/loader.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -72,7 +73,7 @@ const routes: Routes = [
     NotFoundComponent,
     LoaderComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

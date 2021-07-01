@@ -21,15 +21,43 @@ export class TodosService {
     },
   ];
 
-  addTodo(todo: Todo): void {
-    this.todos.push(todo);
+  addTodo(task: string, detail: string, date: Date): Observable<null> {
+    return new Observable<null>((observer) => {
+      setTimeout(() => {
+        const todo: Todo = {
+          task,
+          detail,
+          date,
+          id: new Date().getTime(),
+        };
+        this.todos.push(todo);
+        observer.next(null);
+      }, 500);
+    });
+  }
+
+  editTodo(
+    id: number | string,
+    task: string,
+    detail: string,
+    date: Date
+  ): Observable<null> {
+    return new Observable<null>((observer) => {
+      setTimeout(() => {
+        const todoIndex = this.todos.findIndex((todo) => todo.id === id);
+        this.todos[todoIndex].task = task;
+        this.todos[todoIndex].detail = detail;
+        this.todos[todoIndex].date = date;
+        observer.next(null);
+      }, 500);
+    });
   }
 
   getTodos(): Observable<Todo[]> {
     return new Observable<Todo[]>((observer) => {
       setTimeout(() => {
         observer.next(this.todos);
-      }, 2000);
+      }, 500);
     });
   }
 
@@ -39,7 +67,7 @@ export class TodosService {
         const todo = this.todos.find((todo) => todo.id === id);
         if (todo) observer.next(todo);
         else observer.error('No Found');
-      }, 2000);
+      }, 500);
     });
   }
 

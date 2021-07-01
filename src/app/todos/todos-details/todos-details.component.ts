@@ -39,7 +39,7 @@ export class TodosDetailsComponent implements OnInit {
     const deleteOption = confirm('Are you sure that want to delete this todo?');
     if (deleteOption === true) {
       this.todosService.deleteTodo(this.todo?.id);
-      this.router.navigate(['/todos']);
+      this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
     }
   }
 }
